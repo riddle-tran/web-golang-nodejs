@@ -1,0 +1,30 @@
+func creatJWT(w http.ResponseWriter, r *http.Request, nonce string) {
+	var requestBuffer []byte
+	switch r.Method {
+	case "GET":
+		compressedRequest, err := base64.StdEncoding.DecodeString(r.URL.Query().Get("SAMLRequest"))
+		if err != nil {
+			panic(err)
+		}
+		requestBuffer, err = ioutil.ReadAll(flate.NewReader(bytes.NewReader(compressedRequest)))
+		if err != nil {
+			panic(err)
+		}
+	case "POST":
+		if err := r.ParseForm(); err != nil {
+			panic(err)
+		}
+		var err error
+		requestBuffer, err = base64.StdEncoding.DecodeString(r.PostForm.Get("SAMLRequest"))
+		if err != nil {
+			panic(err)
+		}
+
+	}
+	resp := Response{}
+	if err := xml.Unmarshal(requestBuffer, &resp); err != nil {
+		fmt.Println(err)
+		panic(err)
+		return
+	}
+}
