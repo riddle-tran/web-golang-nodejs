@@ -1,0 +1,2 @@
+[fileXML]-->SHA-1--->[BASE64 ENCODE]--->[[fileXML],[BASE64 ENCODE]]---> SHA-1-->[Encrypt RSA]--->[[fileXML],[BASE64 ENCODE],[Encrypt RSA],[X509]]
+XML canonicalization: la chuan hao XML https://stackoverflow.com/questions/9986200/what-is-canonicalization-in-xml-signature
