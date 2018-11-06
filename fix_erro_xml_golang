@@ -28,3 +28,8 @@ func creatJWT(w http.ResponseWriter, r *http.Request, nonce string) {
 		return
 	}
 }
+========================
+#create file xml form request.PostForm.Get("samlRepose")
+rawResponseBuf, err := base64.StdEncoding.DecodeString(req.PostForm.Get("SAMLResponse"))
+doc := etree.NewDocument()
+if err := doc.ReadFromBytes(rawResponseBuf)
